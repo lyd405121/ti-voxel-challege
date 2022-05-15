@@ -37,8 +37,3 @@ Mouse and keyboard interface:
 - This work is mainly inspired by an art work from [INFINITE JOURNEYS](https://www.bilibili.com/video/BV1rB4y1C7Zx?spm_id_from=333.880.my_history.page.click)
 - The original author loves his wife who doing  crochet about 10 years, which really touches me
 - So this work is also a salute to the author
-
-
-
-- 
-- And
