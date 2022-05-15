@@ -19,23 +19,23 @@ def sdf_line(p, a, b, r ):
     h = clamp( dot(p-a,b-a)/dot(b-a,b-a), 0.0, 1.0 )
     return ( p-a - (b-a)*h ).norm()-r
 @ti.func
-def op_minus(d1,d2):
-    return max(d1,-d2)
-@ti.func
 def sdf_cylinder(  p,  h,  r ):
     d = abs(vec2(ti.sqrt(p.x*p.x+p.z*p.z),p.y)) - vec2(h,r)
     return min(max(d.x,d.y),0.0) + max(d,0.0).norm()
 @ti.func
-def sd_flower( uv, size, rpetals, npetals):
+def sdf_flower( uv, size, rpetals, npetals):
     uv = vec2(ti.atan2(uv.x, uv.y), uv.norm())        
     m = (fract((uv.x+ uv.y) / 3.1415926 / 2. * npetals) - 0.5) * rpetals
     return  ti.math.smoothstep(size, size-0.01, uv.y + min(m, -m))
 @ti.func
-def carpet(p, offset_x, offset_y, offset_z):
+def sdf_carpet(p, offset_x, offset_y, offset_z):
     t = abs(0.025* (p.x - offset_x)*(p.x - offset_x)+ 0.025 * (p.z - offset_z)*(p.z - offset_z)-offset_y+p.y)
     if t < 1.0:
         t = 0.0
     return t
+@ti.func
+def op_minus(d1,d2):
+    return max(d1,-d2) 
 @ti.func
 def sdf_rabit(p):
     color = vec3(0.7,0.7,0.7)
@@ -71,14 +71,14 @@ def sdf_rabit(p):
         color = vec3(0.0,0.0,int(p.z/2)%2*0.5)
         d  = min(min(min(d1,d2),d3),d)
     if abs(p.x) < 20.0  and p.z > 6.0 and p.z < 36.0 and p.y<10.0 and p.y > -20.0:
-        d  = min(carpet(vec3(abs(p.x),p.y,p.z),5,10,4),d)
+        d  = min(sdf_carpet(vec3(abs(p.x),p.y,p.z),5,10,4),d)
         color = vec3(0.7,0.2,0.2)
         if sdf_ellipsoid(vec3(p.x/20.0, 1.0, (p.z-21.0) / 15.0), vec3(1.0,1.0,1.0)) < 0.1:
             color = vec3(0.5,0.5,0.1)
-        elif sd_flower(vec2(p.x/40.0, (p.z-21.0) / 30.0),0.3,0.3,7.0) < 0.1:
+        elif sdf_flower(vec2(p.x/40.0, (p.z-21.0) / 30.0),0.3,0.3,7.0) < 0.1:
             color = vec3(0.5,0.5,0.3)
     if  p.y == -50.0:
-        if sd_flower(vec2(p.x/128.0, p.z/128.0),0.3,0.3,3.0) < 0.1:
+        if sdf_flower(vec2(p.x/128.0, p.z/128.0),0.3,0.3,3.0) < 0.1:
             color = vec3(0.1,0.1,0.5)  
         d = 0.0
     d1 = sdf_ellipsoid(p-vec3(30,-49,40), vec3(12, 1,12))
