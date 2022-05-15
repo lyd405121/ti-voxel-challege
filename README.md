@@ -1,4 +1,4 @@
-# <a name="title">Taichi Voxel Challenge</a>
+# <a name="title">You are not alone</a>
 
 ## Installation
 
