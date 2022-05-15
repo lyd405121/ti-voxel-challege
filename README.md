@@ -30,7 +30,7 @@ to install the dependencies of the voxel renderer.
 ## Quickstart
 
 ```sh
-python3 example1.py  # example2/3/.../7/8.py
+python3 main.py  # example1/2/3/.../7/8.py
 ```
 
 Mouse and keyboard interface:
