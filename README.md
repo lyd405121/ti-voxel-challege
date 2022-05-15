@@ -2,7 +2,7 @@
 
 ## Result
 
-<img src="https://github.com/lyd405121/ti-voxel-challege/blob/main/myresult.jpg" width="45%"></img>
+<img src="https://github.com/lyd405121/ti-voxel-challege/blob/main/myresult.jpg" width="100%"></img>
 - This code is mainly using some [sdf function](https://iquilezles.org/articles/distfunctions2d/) to produce a rabbit and other stuff
 
 ## Important
