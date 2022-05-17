@@ -1,4 +1,3 @@
-from re import T
 from scene import Scene
 import taichi as ti
 from taichi.math import *
